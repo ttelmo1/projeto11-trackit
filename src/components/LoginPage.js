@@ -1,52 +1,47 @@
-import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { UserContext } from "../Providers/UserProvider";
 import BigLogo from "./BigLogo";
 import Input from "./Input";
 
 export default function LoginPage({ setToken }) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { login } = useContext(UserContext);
+    const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
 
-    function login(e) {
+    const submitLogin = async (e) => {
         e.preventDefault();
-        const body = { email, password };
-        const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body);
-        request.then(response => {
-            setToken(response.data.token);
-            navigate("/habitos");
-        });
-        request.catch(() => {
-            alert("Email ou senha incorretos");
-        });
-    }
+        // setIsLoading(true);
+        const isLogged = await login(loginInfo);
+        // setIsLoading(false);
+    
+        isLogged && navigate('/hoje');
+      };
 
     return (
         <Container>
             <BigLogo />
-            <StyledForm onSubmit={login}>
+            <StyledForm onSubmit={submitLogin}>
                 <Input 
                     type="email" 
                     placeholder="email" 
-                    value={email} 
-                    onChange={e => setEmail(e.target.value)}
+                    value={loginInfo.email}
+                    onChange={e => setLoginInfo({ ...loginInfo, email: e.target.value })}
                     required    
                 />
                 <Input 
                     type="password" 
                     placeholder="senha" 
-                    alue={password} 
-                    onChange={e => setPassword(e.target.value)} 
+                    value={loginInfo.password}
+                    onChange={e => setLoginInfo({ ...loginInfo, password: e.target.value })} 
                     required
                 />
                 <StyledButton type="submit">Entrar</StyledButton>
             </StyledForm>
             <StyledLink to="/cadastro">Não tem uma conta? Cadastre-se!</StyledLink>
         </Container>
-    )
-
+    );
 
 }
 
