@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 
 export const UserContext = createContext(null);
 
-export default function UserProvider({ children }) {
+export function UserProvider({ children }) {
     const [currentUser, setCurrentUser] = useState({
         name: "",
         email: "",
@@ -25,7 +25,7 @@ export default function UserProvider({ children }) {
     return (
         <UserContext.Provider value={{ currentUser, login}}>
             {children}
-        </UserContext.Provider>
+        </UserContext.Provider>     
     );
 
     }

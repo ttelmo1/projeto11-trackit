@@ -5,9 +5,10 @@ import { UserContext } from "../Providers/UserProvider";
 import BigLogo from "./BigLogo";
 import Input from "./Input";
 
-export default function LoginPage({ setToken }) {
+export default function LoginPage() {
     const navigate = useNavigate();
     const { login } = useContext(UserContext);
+
     const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
 
     const submitLogin = async (e) => {

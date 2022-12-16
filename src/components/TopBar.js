@@ -31,6 +31,8 @@ const StyledHeader = styled.header`
     font-family: 'Playball', sans-serif;
     font-size: 39px;
     color: #fff;
+
+    padding: 0 18px;
 `
 const StyledUserContainer = styled.div`
     width: 51px;
