@@ -6,11 +6,9 @@ import HabitForm from "./HabitForm"
 import HabitListed from "./HabitListed";
 
 export default function HabitsContainer() {
-
+    const [hasHabitExcluded, setHasHabitExcluded] = useState(false);
     const [habits, setHabits] = useState([]);
     const { currentUser: { token } } = useContext(UserContext);
-    
-
     const [formOpen , setFormOpen] = useState(false);
 
     useEffect(() => {
@@ -26,7 +24,7 @@ export default function HabitsContainer() {
         request.catch(error => {
             alert(error.response.data.message);
         })
-    }, [])
+    }, [hasHabitExcluded])
 
 
     return (
@@ -35,10 +33,10 @@ export default function HabitsContainer() {
                 <h2>Meus hábitos</h2>
                 <button onClick={() => setFormOpen(true)}>+</button>
             </Header>
-            {formOpen && <HabitForm setFormOpen={setFormOpen}/> }
-            {habits.length <= 0 ?  
+            {formOpen && <HabitForm setFormOpen={setFormOpen} setHasHabitExcluded={setHasHabitExcluded} /> }
+            {habits?.length <= 0 ?  
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p> : 
-                habits.map( habit => <HabitListed habit={habit} habits={habits} setHabits={setHabits} />) 
+                habits.map( habit => <HabitListed habit={habit} habits={habits} setHabits={setHabits} setHasHabitExcluded={setHasHabitExcluded}  />) 
             }
         </Container>
     );

@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../Providers/UserProvider";
 import axios from "axios";
 
-export default function HabitListed({ habit: { name, days, id } }) {
+export default function HabitListed({ habit: { name, days, id }, setHasHabitExcluded }) {
 
     const { currentUser: { token } } = useContext(UserContext);
 
@@ -16,11 +16,14 @@ export default function HabitListed({ habit: { name, days, id } }) {
             }
         };
         await axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config)
+        setHasHabitExcluded(prev => !prev)
     }
+
 
     function clickDelete() {
         const confirm = window.confirm("Deseja realmente apagar este hábito?")
         confirm && deleteHabit()
+        
     }
 
     return (

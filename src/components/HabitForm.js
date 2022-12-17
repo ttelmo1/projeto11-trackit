@@ -6,9 +6,8 @@ import { UserContext } from "../Providers/UserProvider";
 import axios from "axios"
 
 export default function HabitForm(props) {
-    const {setFormOpen} = props;
+    const {setFormOpen, setHasHabitExcluded} = props;
     const { currentUser: { token } } = useContext(UserContext);
-    console.log(token)
 
     const [habit, setHabit] = useState({ name: "", days: [] });
    
@@ -40,11 +39,10 @@ export default function HabitForm(props) {
                     'Authorization': `Bearer ${token}`
                 }
             };
-            console.log(token)
-            console.log(config)
-            console.log(habit)
             const response = await axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", habit, config);
             setFormOpen(false); 
+            setHasHabitExcluded(prev => !prev)
+
         } catch (error) {
             alert(error.response.data.message);
         }  
