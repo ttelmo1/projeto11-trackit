@@ -2,16 +2,16 @@ import Input from "./Input"
 import { WEEKDAYS } from "../constants"
 import styled from "styled-components"
 import { useContext, useState } from "react"
-import { UserContext } from "../Providers/UserProvider"
+import { UserContext } from "../Providers/UserProvider";
 import axios from "axios"
 
 export default function HabitForm(props) {
-
     const {setFormOpen} = props;
-    
-    const [habit, setHabit] = useState({ name: "", days: [] });
     const { currentUser: { token } } = useContext(UserContext);
+    console.log(token)
 
+    const [habit, setHabit] = useState({ name: "", days: [] });
+   
     function clickCheckbox(a) {
         const selected = habit.days.includes(a);
         if (selected) {
@@ -35,13 +35,16 @@ export default function HabitForm(props) {
             return;
         }
         try{
-        const config = {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        };
-        const response = await axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", habit, config);
-        setFormOpen(false); 
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
+            console.log(token)
+            console.log(config)
+            console.log(habit)
+            const response = await axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", habit, config);
+            setFormOpen(false); 
         } catch (error) {
             alert(error.response.data.message);
         }  

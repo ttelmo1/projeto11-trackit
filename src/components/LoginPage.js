@@ -17,7 +17,7 @@ export default function LoginPage() {
         const isLogged = await login(loginInfo);
         // setIsLoading(false);
     
-        isLogged && navigate('/hoje');
+        isLogged && navigate('/habitos');
       };
 
     return (

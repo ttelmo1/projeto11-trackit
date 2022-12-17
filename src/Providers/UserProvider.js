@@ -15,6 +15,7 @@ export function UserProvider({ children }) {
         try {
             const {data : {name, email, image, token}} = await axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", loginInfo);
             setCurrentUser({name, email, image, token});
+            console.log(token)
             return true;
         } catch (error) {
             alert(error.response.data.message);

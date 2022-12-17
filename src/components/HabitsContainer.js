@@ -1,15 +1,32 @@
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components"
+import { UserContext } from "../Providers/UserProvider";
 import HabitForm from "./HabitForm"
 import HabitListed from "./HabitListed";
 
 export default function HabitsContainer() {
 
     const [habits, setHabits] = useState([]);
+    const { currentUser: { token } } = useContext(UserContext);
     
 
     const [formOpen , setFormOpen] = useState(false);
 
+    useEffect(() => {
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        const request = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", config);
+        request.then(response => {
+            setHabits(response.data);
+        })
+        request.catch(error => {
+            alert(error.response.data.message);
+        })
+    }, [])
 
 
     return (
@@ -21,10 +38,10 @@ export default function HabitsContainer() {
             {formOpen && <HabitForm setFormOpen={setFormOpen}/> }
             {habits.length <= 0 ?  
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p> : 
-                <HabitListed habits={habits} setHabits={setHabits} />
+                habits.map( habit => <HabitListed habit={habit} habits={habits} setHabits={setHabits} />) 
             }
         </Container>
-    )
+    );
 }
 
 const Container = styled.div`
