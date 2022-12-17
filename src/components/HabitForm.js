@@ -8,7 +8,6 @@ import axios from "axios"
 export default function HabitForm(props) {
     const {setFormOpen, setHasHabitExcluded} = props;
     const { currentUser: { token } } = useContext(UserContext);
-
     const [habit, setHabit] = useState({ name: "", days: [] });
    
     function clickCheckbox(a) {
@@ -25,10 +24,6 @@ export default function HabitForm(props) {
    
 
     async function saveHabit (habit) {
-        if(habit.name === ""){
-            alert("Digite o nome do hábito")
-            return;
-        }
         if(habit.days.length === 0){
             alert("Selecione pelo menos um dia da semana")
             return;

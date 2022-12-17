@@ -3,24 +3,28 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HabitsPage from "./components/HabitsPage";
 import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/SignupPage";
+import TodayPage from "./components/TodayPage";
 import { GlobalStyle } from "./GlobalStyle";
+import HabitsProvider from "./Providers/HabitsProvider";
 import { UserContext, UserProvider } from "./Providers/UserProvider";
 
 
 export default function App() {
 
-  
+
   return (
     <BrowserRouter>
       <GlobalStyle />
       <UserProvider>
-        <Routes>
-          <Route path="/" element={<LoginPage/>} />
-          <Route path="/cadastro" element={<SignupPage />} />
-          <Route path="/habitos" element={<HabitsPage/>} />
-          {/* <Route path="hoje" element={<TodayPage token={token}/>} /> */}
-          {/* <Route path="historico" element={<HistoryPage token={token}/>}/> */}
-        </Routes>
+        <HabitsProvider>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/cadastro" element={<SignupPage />} />
+            <Route path="/habitos" element={<HabitsPage />} />
+            <Route path="hoje" element={<TodayPage />} />
+            {/* <Route path="historico" element={<HistoryPage token={token}/>}/> */}
+          </Routes>
+        </HabitsProvider>
       </UserProvider>
     </BrowserRouter>
   );
