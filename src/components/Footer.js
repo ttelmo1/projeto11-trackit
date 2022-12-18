@@ -4,22 +4,28 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { HabitsContext } from "../Providers/HabitsProvider"
 
-export default function Footer(){
+export default function Footer() {
 
-    const {todayHabits} = useContext(HabitsContext);
+    const { todayHabits } = useContext(HabitsContext);
 
     const totalHabits = todayHabits.length;
     const doneHabits = todayHabits.filter((habit) => habit.done).length;
-    const percentage = (doneHabits/totalHabits)*100;
+    const percentage = (doneHabits / totalHabits) * 100;
 
 
 
 
-    return(
-        <StyledFooter>
-            <Link to = "/habitos">Hábitos</Link>
+    return (
+        <StyledFooter
+            data-test="menu"
+        >
+            <Link
+                to="/habitos"
+                data-test="habit-link"
+            >Hábitos</Link>
             <ProgressBar>
                 <CircularProgressbarWithChildren
+                    data-test="today"
                     background={true}
                     backgroundPadding={6}
                     styles={buildStyles({
@@ -29,12 +35,15 @@ export default function Footer(){
                         trailColor: "transparent",
                         strokeLinecap: "round",
                     })}
-                    value = {totalHabits === 0 ? 0 : percentage}
+                    value={totalHabits === 0 ? 0 : percentage}
                 >
                     <Link to="/hoje">Hoje</Link>
                 </CircularProgressbarWithChildren>
             </ProgressBar>
-            <Link to = "/historico">Histórico</Link>
+            <Link
+                to="/historico"
+                data-test="history-link"
+            >Histórico</Link>
         </StyledFooter>
     )
 }

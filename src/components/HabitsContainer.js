@@ -31,7 +31,10 @@ export default function HabitsContainer() {
         <Container>
             <Header>
                 <h2>Meus hábitos</h2>
-                <button onClick={() => setFormOpen(true)}>+</button>
+                <button 
+                onClick={() => setFormOpen(true)}
+                data-test="habit-create-btn"
+                >+</button>
             </Header>
             {formOpen && <HabitForm setFormOpen={setFormOpen} setHasHabitExcluded={setHasHabitExcluded} /> }
             {habits?.length <= 0 ?  

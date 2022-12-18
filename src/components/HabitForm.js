@@ -51,8 +51,12 @@ export default function HabitForm(props) {
     }
 
     return (
-        <StyledHabitForm onSubmit={submitHabit}>
+        <StyledHabitForm 
+        onSubmit={submitHabit}
+        data-test="habit-create-container"
+        >
             <Input
+                data-test="habit-name-input"
                 type="text"
                 placeholder="nome do hábito"
                 value={habit.name}
@@ -62,6 +66,7 @@ export default function HabitForm(props) {
             <StyledWeekdayList>
                 {WEEKDAYS.map((a, i) =>
                     <StyledWeekdaysBox
+                        data-test="habit-day"
                         selected={habit.days.includes(i)}
                         onClick={() => clickCheckbox(i)}
                         key={i}
@@ -69,8 +74,8 @@ export default function HabitForm(props) {
                         {a}</StyledWeekdaysBox>)}
             </StyledWeekdayList>
             <ButtonDiv>
-                <p className="cancel" onClick={() => setFormOpen(false)}>Cancelar</p>
-                <button type="submit" className="save">Salvar</button>
+                <p className="cancel" onClick={() => setFormOpen(false)} data-test="habit-create-cancel-btn">Cancelar</p>
+                <button type="submit" className="save" data-test="habit-create-save-btn">Salvar</button>
             </ButtonDiv>
         </StyledHabitForm>
     )

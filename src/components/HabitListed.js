@@ -27,17 +27,22 @@ export default function HabitListed({ habit: { name, days, id }, setHasHabitExcl
     }
 
     return (
-        <StyledHabitListed>
+        <StyledHabitListed
+            data-test="habit-container"
+        >
             <StyledHabitInfo>
-                <h2>{name}</h2>
+                <h2
+                    data-test="habit-name"
+                >{name}</h2>
                 <StyledWeekdayList>
-                    {WEEKDAYS.map((day, index) => <StyledWeekdaysBox selected={days.includes(index)} >{day}</StyledWeekdaysBox> )}
+                    {WEEKDAYS.map((day, index) => <StyledWeekdaysBox selected={days.includes(index)}  data-test="habit-day">{day}</StyledWeekdaysBox> )}
                 </StyledWeekdayList>
             </StyledHabitInfo>
             <TrashOutline
+                data-test="habit-delete-btn"
                 onClick={() => clickDelete()}
                 height="15px"
-                width="13px"
+                width="13px"   
             />
         </StyledHabitListed>
     )

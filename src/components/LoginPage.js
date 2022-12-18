@@ -30,6 +30,7 @@ export default function LoginPage() {
                     value={loginInfo.email}
                     onChange={e => setLoginInfo({ ...loginInfo, email: e.target.value })}
                     required    
+                    data-test="email-input"
                 />
                 <Input 
                     type="password" 
@@ -37,10 +38,17 @@ export default function LoginPage() {
                     value={loginInfo.password}
                     onChange={e => setLoginInfo({ ...loginInfo, password: e.target.value })} 
                     required
+                    data-test="password-input"
                 />
-                <StyledButton type="submit">Entrar</StyledButton>
+                <StyledButton 
+                type="submit"
+                data-test="login-btn"
+                >Entrar</StyledButton>
             </StyledForm>
-            <StyledLink to="/cadastro">Não tem uma conta? Cadastre-se!</StyledLink>
+            <StyledLink 
+            to="/cadastro"
+            data-test="signup-link"     
+            >Não tem uma conta? Cadastre-se!</StyledLink>
         </Container>
     );
 

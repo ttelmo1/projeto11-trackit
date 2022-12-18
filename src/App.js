@@ -1,4 +1,3 @@
-import { useContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HabitsPage from "./components/HabitsPage";
 import HistoryPage from "./components/HistoryPage";

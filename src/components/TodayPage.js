@@ -22,8 +22,9 @@ export default function TodayPage(){
         <TodayContainer>
             <TopBar />
             <HeaderContainer>
-                <h2>{now}</h2>
+                <h2 data-test="today">{now}</h2>
                 <p
+                    data-test="today-counter"
                     style = {{color: totalHabits === 0 ? '#BABABA' : '#8FC549'}}
                 >{totalHabits === 0 ? 'Nenhum hábito concluído ainda' : `${percentage.toFixed(0)}% dos hábitos concluídos`}</p>
             </HeaderContainer>

@@ -35,6 +35,7 @@ export default function SignupPage(){
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
+                    data-test="email-input"
                 />
                 <Input
                     type="password"
@@ -42,6 +43,7 @@ export default function SignupPage(){
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     required
+                    data-test="password-input"
                 />
                 <Input
                     type="text"
@@ -49,6 +51,7 @@ export default function SignupPage(){
                     value={name}
                     onChange={e => setName(e.target.value)}
                     required
+                    data-test="user-name-input"
                 />
                 <Input
                     type="url"
@@ -56,10 +59,11 @@ export default function SignupPage(){
                     value={image}
                     onChange={e => setImage(e.target.value)}
                     required
+                    data-test="user-image-input"
                 />
-                <StyledButton type="submit">Cadastrar</StyledButton>
+                <StyledButton type="submit" data-test="signup-btn">Cadastrar</StyledButton>
             </StyledForm>
-            <StyledLink to="/">Já tem uma conta? Faça login!</StyledLink>
+            <StyledLink to="/" data-test="login-link">Já tem uma conta? Faça login!</StyledLink>
         </Container>
     )
 

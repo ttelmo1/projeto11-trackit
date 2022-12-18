@@ -6,7 +6,9 @@ export default function TopBar() {
     const { currentUser:{image, name} } = useContext(UserContext);
 
     return (
-        <StyledHeader>
+        <StyledHeader 
+        data-test="header"    
+        >
             <h1>TrackIt</h1>
             <StyledUserContainer image={image} />
         </StyledHeader>

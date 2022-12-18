@@ -17,14 +17,21 @@ export default function TodayHabit({todayHabit: { id, name , done , currentSeque
     }
     
     return(
-        <TodayHabitContainer className="habito">
+        <TodayHabitContainer className="habito" data-test="today-habit-container">
 
             <StyledHabitInfo done={done}>
-                <h2>{name}</h2>
-                <p>Sequência atual: <span>{currentSequence} dias</span></p>
-                <p>Seu recorde: <span>{highestSequence} dias</span></p>
+                <h2
+                    data-test="today-habit-name"
+                >{name}</h2>
+                <p
+                    data-test="today-habit-sequence" 
+                >Sequência atual: <span>{currentSequence} dias</span></p>
+                <p
+                    data-test="today-habit-record"
+                >Seu recorde: <span>{highestSequence} dias</span></p>
             </StyledHabitInfo>
             <Checkbox
+                data-test="today-habit-check-btn"
                 color = {done? "#8FC549" : "#EBEBEB"}
                 height = "69px"
                 width = "69px"
