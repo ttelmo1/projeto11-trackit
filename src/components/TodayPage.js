@@ -5,7 +5,7 @@ import { HabitsContext } from "../Providers/HabitsProvider";
 import Footer from "./Footer";
 import TodayHabit from "./TodayHabit";
 import dayjs from 'dayjs';
-// import 'dayjs/locale/pt-br';
+import 'dayjs/locale/pt-br';
 
 
 export default function TodayPage(){

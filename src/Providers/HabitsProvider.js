@@ -51,6 +51,7 @@ export default function HabitsProvider({ children }){
         const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', config);
         request.then((response) => {
             setTodayHabits(response.data);
+            console.log(response.data);
         });
         request.catch((error) => {
             alert(error.response.data.message);

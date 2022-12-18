@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HabitsPage from "./components/HabitsPage";
+import HistoryPage from "./components/HistoryPage";
 import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/SignupPage";
 import TodayPage from "./components/TodayPage";
@@ -22,7 +23,7 @@ export default function App() {
             <Route path="/cadastro" element={<SignupPage />} />
             <Route path="/habitos" element={<HabitsPage />} />
             <Route path="hoje" element={<TodayPage />} />
-            {/* <Route path="historico" element={<HistoryPage token={token}/>}/> */}
+            <Route path="historico" element={<HistoryPage />}/>
           </Routes>
         </HabitsProvider>
       </UserProvider>

@@ -34,7 +34,7 @@ export default function Footer(){
                     <Link to="/hoje">Hoje</Link>
                 </CircularProgressbarWithChildren>
             </ProgressBar>
-            <Link to = "/habitos">Histórico</Link>
+            <Link to = "/historico">Histórico</Link>
         </StyledFooter>
     )
 }
