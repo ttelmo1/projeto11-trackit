@@ -1,15 +1,14 @@
+import { useContext } from "react";
 import styled from "styled-components"
+import { UserContext } from "../Providers/UserProvider";
 
 export default function TopBar() {
-    const user = {
-        name: "Joe",
-        image: "https://i.imgur.com/1zISlxg.png"
-    }
+    const { currentUser:{image, name} } = useContext(UserContext);
 
     return (
         <StyledHeader>
             <h1>TrackIt</h1>
-            <StyledUserContainer image={user.image} />
+            <StyledUserContainer image={image} />
         </StyledHeader>
     )
 

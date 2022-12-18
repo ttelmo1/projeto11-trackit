@@ -31,7 +31,7 @@ export default function HabitListed({ habit: { name, days, id }, setHasHabitExcl
             <StyledHabitInfo>
                 <h2>{name}</h2>
                 <StyledWeekdayList>
-                    {WEEKDAYS.map((day, index) => <StyledWeekdaysBox selected={days.includes(index)}>{day}</StyledWeekdaysBox> )}
+                    {WEEKDAYS.map((day, index) => <StyledWeekdaysBox selected={days.includes(index)} key={index} >{day}</StyledWeekdaysBox> )}
                 </StyledWeekdayList>
             </StyledHabitInfo>
             <TrashOutline

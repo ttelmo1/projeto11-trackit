@@ -1,8 +1,20 @@
+import { useContext } from "react"
 import { buildStyles, CircularProgressbarWithChildren } from "react-circular-progressbar"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { HabitsContext } from "../Providers/HabitsProvider"
 
 export default function Footer(){
+
+    const {todayHabits} = useContext(HabitsContext);
+
+    const totalHabits = todayHabits.length;
+    const doneHabits = todayHabits.filter((habit) => habit.done).length;
+    const percentage = (doneHabits/totalHabits)*100;
+
+
+
+
     return(
         <StyledFooter>
             <Link to = "/habitos">Hábitos</Link>
@@ -17,7 +29,7 @@ export default function Footer(){
                         trailColor: "transparent",
                         strokeLinecap: "round",
                     })}
-                    value = {66}
+                    value = {totalHabits === 0 ? 0 : percentage}
                 >
                     <Link to="/hoje">Hoje</Link>
                 </CircularProgressbarWithChildren>

@@ -6,7 +6,6 @@ import styled from "styled-components";
 export default function TodayHabit({todayHabit: { id, name , done , currentSequence, highestSequence }}){
 
     const { checkHabit, uncheckHabit } = useContext(HabitsContext);
-    console.log(id, name, done, currentSequence, highestSequence)
 
     async function toggleHabit(){
         if(done){
@@ -18,7 +17,8 @@ export default function TodayHabit({todayHabit: { id, name , done , currentSeque
     }
     
     return(
-        <TodayHabitContainer>
+        <TodayHabitContainer className="habito">
+
             <StyledHabitInfo done={done}>
                 <h2>{name}</h2>
                 <p>Sequência atual: <span>{currentSequence} dias</span></p>
@@ -41,10 +41,9 @@ const TodayHabitContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-around;
-
+    background-color: #fff;
     min-width: 340px;
     border-radius: 5px;
-    background-color: #fff;
 `;
 
 const StyledHabitInfo = styled.div`

@@ -5,12 +5,16 @@ import { HabitsContext } from "../Providers/HabitsProvider";
 import Footer from "./Footer";
 import TodayHabit from "./TodayHabit";
 import dayjs from 'dayjs';
-import 'dayjs/locale/pt-br';
+// import 'dayjs/locale/pt-br';
 
 
 export default function TodayPage(){
     const { todayHabits } = useContext(HabitsContext);
-    console.log(todayHabits)
+
+    const totalHabits = todayHabits.length;
+    const doneHabits = todayHabits.filter((habit) => habit.done).length;
+    const percentage = (doneHabits/totalHabits)*100;
+
 
     let now = dayjs().locale('pt-br').format('dddd, DD/MM');
 
@@ -19,7 +23,9 @@ export default function TodayPage(){
             <TopBar />
             <HeaderContainer>
                 <h2>{now}</h2>
-                <p>{todayHabits.length === 0 ? 'Nenhum hábito concluído ainda' : `${60} dos hábitos`}</p>
+                <p
+                    style = {{color: totalHabits === 0 ? '#BABABA' : '#8FC549'}}
+                >{totalHabits === 0 ? 'Nenhum hábito concluído ainda' : `${percentage.toFixed(0)}% dos hábitos concluídos`}</p>
             </HeaderContainer>
             <HabitContainer>
                 {todayHabits.map((todayHabit, index) => <TodayHabit todayHabit={todayHabit} key={index} />)}
@@ -32,8 +38,9 @@ export default function TodayPage(){
 const TodayContainer = styled.div`
     width: 100%;
     margin-top: 70px;
+    margin-bottom: 70px;
     min-height: calc(100vh - 140px);
-    gap: 28px;
+    gap: 20px;
     padding: 22px 18px;
 
     display: flex;
@@ -45,6 +52,7 @@ const TodayContainer = styled.div`
 const HeaderContainer = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 10px;
 
     & > h2 {
         font-size: 23px;
@@ -54,7 +62,6 @@ const HeaderContainer = styled.div`
 
 
     & > p {
-        color: #BABABA;
         font-size: 23px;
         font-family: 'Lexend Deca', sans-serif;
     }
@@ -65,6 +72,6 @@ const HabitContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #fff;
     border-radius: 5px;
+    gap : 10px;
 `

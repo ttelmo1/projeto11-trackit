@@ -36,7 +36,7 @@ export default function HabitsContainer() {
             {formOpen && <HabitForm setFormOpen={setFormOpen} setHasHabitExcluded={setHasHabitExcluded} /> }
             {habits?.length <= 0 ?  
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p> : 
-                habits.map( habit => <HabitListed habit={habit} habits={habits} setHabits={setHabits} setHasHabitExcluded={setHasHabitExcluded}  />) 
+                habits.map( habit => <HabitListed habit={habit} habits={habits} setHabits={setHabits} setHasHabitExcluded={setHasHabitExcluded} key={habit}  />) 
             }
         </Container>
     );
@@ -44,6 +44,7 @@ export default function HabitsContainer() {
 
 const Container = styled.div`
     margin-top: 70px;
+    margin-bottom: 70px;
     width: 100%;
     min-height: calc(100vh - 140px);
     background-color: #e5e5e5;
